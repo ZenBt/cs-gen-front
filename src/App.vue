@@ -14,7 +14,7 @@
       </select>
     </div>
 
-    <div v-if="selected.id == 0 || selected.id == 1">
+    <div v-if="selected.id == 0 || selected.id == 1 || selected.id == 2 || selected.id == 3">
       <h1> Количество задач </h1>
       <div class="input-container">
         <div class="omrs-input-group">
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div v-if="(selected.id == 0 || selected.id == 1) && amount > 0">
+    <div v-if="(selected.id == 0 || selected.id == 1 || selected.id == 2 || selected.id == 3) && amount > 0">
 
       <md-button class="md-raised" v-on:click="gen"> Сгенерировать </md-button>
     </div>
@@ -62,7 +62,9 @@ export default {
       msg: 'Добрый день! Выберите тип задачи',
       tasks: [
         { id: 0, name: 'Задачи на кодировки' },
-        { id: 1, name: 'Задачи на абсолютный путь' }
+        { id: 1, name: 'Задачи на абсолютный путь' },
+        { id: 2, name: 'Задача на хранение информации'},
+        { id: 3, name: 'Задача на передачу информации'}
       ],
       selected: '',
       amount: undefined,
@@ -74,7 +76,7 @@ export default {
   methods: {
     gen: function () {
       if (this.amount > 50) {
-        alert('Количество задач не может превышать 100');
+        alert('Количество задач не может превышать 50');
         return;
       }
       axios.post('http://localhost:8000/api/task/', {
